@@ -81,3 +81,34 @@ button {
     margin: 1%;
     border-radius: 7px;
 }
+
+.navbar ul{
+    list-style: none;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 90%;
+    margin-bottom: 10px;
+    z-index: 1;
+}
+
+.navbar ul li {
+    float: right;
+    margin-right: 25px;
+}
+
+.navbar ul li a{
+    font-family: Arial;
+    color: darkblue;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: right;
+    padding: 20px;
+    margin-left: 15px;
+    
+}
+
+.navbar ul li a:hover{
+    font-weight: bold;
+    color: thistle;
+}

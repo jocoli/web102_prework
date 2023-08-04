@@ -7,8 +7,18 @@
   </head>
 
   <body>
+    <div class ="navbar">
+        <ul>
+            <li>
+                <a href="#thegames">Our Games</a>
+                <a href="#header">Top</a>
+            </li>
+        </ul>
+    </div>
+    
+
     <!-- header row with logo -->
-    <div class="header">
+    <div id="header" class="header">
         <img id="tentacles" src="assets/tentacles.png">
         <h1 class="header-text">Sea Monster Crowdfunding</h1>
     </div>
@@ -48,7 +58,7 @@
     </div>
 
     <!-- list of games funded by Sea Monster -->
-    <h2>Our Games</h2>
+    <h2 id="thegames">Our Games</h2>
     <p>Check out each of our games below!</p>
     <div id="button-container">
         <button id="unfunded-btn">Show Unfunded Only</button>
@@ -58,6 +68,7 @@
     <div id="games-container">
 
     </div>
+
 
     <script type="module" src="index.js"></script>
   </body>
