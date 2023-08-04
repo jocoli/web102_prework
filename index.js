@@ -58,38 +58,7 @@ function addGamesToPage(games) {
 
 
     }
-    /*************************************************************************************
-     * Challenge 4: Create the summary statistics at the top of the page displaying the
-     * total number of contributions, amount donated, and number of games on the site.
-     * Skills used: arrow functions, reduce, template literals
-    */
 
-    // grab the contributions card element
-    const contributionsCard = document.getElementById("num-contributions");
-
-    // use reduce() to count the number of total contributions by summing the backers
-    const totalcontributions = games.reduce((acc, game) =>{
-        return acc + game.backers;
-    }, 0);
-
-
-    // set the inner HTML using a template literal and toLocaleString to get a number with commas
-    contributionsCard.innerHTML = `<p> ${totalcontributions.toLocaleString('en-US')} </p>`; 
-
-    // grab the amount raised card, then use reduce() to find the total amount raised
-    const raisedCard = document.getElementById("total-raised");
-    const totalpledged = games.reduce((acc, game) =>{
-        return acc + game.pledged;
-    }, 0);
-
-
-    // set inner HTML using template literal
-    raisedCard.innerHTML = `<p> $${totalpledged.toLocaleString('en-US')} </p>`;
-
-    // grab number of games card and set its inner HTML
-    const gamesCard = document.getElementById("num-games");
-    const totalgames = games.reduce((acc, game) => {return acc + 1}, 0);
-    gamesCard.innerHTML = `<p> ${totalgames.toLocaleString('en-US')} </p>`;
 
 }
 
@@ -97,6 +66,38 @@ function addGamesToPage(games) {
 // later, we'll call this function using a different list of games
 addGamesToPage(GAMES_JSON);
 
+/*************************************************************************************
+ * Challenge 4: Create the summary statistics at the top of the page displaying the
+ * total number of contributions, amount donated, and number of games on the site.
+ * Skills used: arrow functions, reduce, template literals
+ */
+
+// grab the contributions card element
+const contributionsCard = document.getElementById("num-contributions");
+
+// use reduce() to count the number of total contributions by summing the backers
+const totalcontributions = GAMES_JSON.reduce((acc, game) =>{
+    return acc + game.backers;
+}, 0);
+
+
+// set the inner HTML using a template literal and toLocaleString to get a number with commas
+contributionsCard.innerHTML = `<p> ${totalcontributions.toLocaleString('en-US')} </p>`; 
+
+// grab the amount raised card, then use reduce() to find the total amount raised
+const raisedCard = document.getElementById("total-raised");
+const totalpledged = GAMES_JSON.reduce((acc, game) =>{
+    return acc + game.pledged;
+}, 0);
+
+
+// set inner HTML using template literal
+raisedCard.innerHTML = `<p> $${totalpledged.toLocaleString('en-US')} </p>`;
+
+// grab number of games card and set its inner HTML
+const gamesCard = document.getElementById("num-games");
+const totalgames = GAMES_JSON.reduce((acc, game) => {return acc + 1}, 0);
+gamesCard.innerHTML = `<p> ${totalgames.toLocaleString('en-US')} </p>`;
 
 
 /*************************************************************************************
@@ -161,12 +162,19 @@ allBtn.addEventListener('click', showAllGames);
 const descriptionContainer = document.getElementById("description-container");
 
 // use filter or reduce to count the number of unfunded games
+let unfundedlist = GAMES_JSON.filter((game) =>{
+   return game.goal > game.pledged;
+});
+let totalUnfunded = unfundedlist.length;
 
 
 // create a string that explains the number of unfunded games using the ternary operator
-
+const displaystr = `$${totalpledged.toLocaleString('en-US')} has been pledged for a total of ${GAMES_JSON.length} games. ${totalUnfunded>1 ? totalUnfunded + " games need more funding to reach their goal!" : "No more than one game needs funding!"}`; 
 
 // create a new DOM element containing the template string and append it to the description container
+const new_paragraph = document.createElement("p");
+new_paragraph.innerText = displaystr;
+descriptionContainer.append(new_paragraph);
 
 /************************************************************************************
  * Challenge 7: Select & display the top 2 games
